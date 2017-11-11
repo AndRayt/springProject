@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    <modelVersion>${javax.servlet-api.version}</modelVersion>
 
     <groupId>ru.arc.SpringBooks</groupId>
     <artifactId>ru.arc.SpringBooks</artifactId>
@@ -10,10 +10,21 @@
     <packaging>war</packaging>
 
     <properties>
-        <spring.version>4.1.1.RELEASE</spring.version>
+        <spring.version>5.0.1.RELEASE</spring.version>
+        <hibernate-entitymanager.version>5.2.12.Final</hibernate-entitymanager.version>
+        <spring-data-jpa.version>2.0.1.RELEASE</spring-data-jpa.version>
+        <standard.version>1.2.5</standard.version>
+        <jstl.version>1.2</jstl.version>
+        <mysql-connector-java.version>6.0.6</mysql-connector-java.version>
+        <commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+        <jboss-transaction-api_1.2_spec.version>1.0.1.Final</jboss-transaction-api_1.2_spec.version>
+        <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
     </properties>
 
     <dependencies>
+
+        <!-- Web -->
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -28,8 +39,9 @@
 
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -62,14 +74,54 @@
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>${standard.version}</version>
         </dependency>
+
+        <!-- Database -->
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate-entitymanager.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.1.4</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>${commons-dbcp2.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+            <version>${jboss-transaction-api_1.2_spec.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
