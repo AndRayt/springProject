@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Edit book</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
 

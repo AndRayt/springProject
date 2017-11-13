@@ -4,8 +4,10 @@
 <html>
 <head>
     <title>Add book</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body bgcolor="#9999cc">
+<div class="center">
 <form action="${pageContext.servletContext.contextPath}/create" method="POST">
     <table>
         <tr>
@@ -31,5 +33,6 @@
         </tr>
     </table>
 </form>
+</div>
 </body>
 </html>

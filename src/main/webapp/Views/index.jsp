@@ -5,7 +5,8 @@
 <html>
 <head lang="en">
   <title>Books</title>
-  <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>">
+  <c:url value="" var="cssURL" />
+  <style><%@include file="/resources/css/style.css"%></style>
 </head>
 
 <body bgcolor="#ffff99">
