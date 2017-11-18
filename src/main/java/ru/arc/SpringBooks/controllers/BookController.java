@@ -7,7 +7,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import ru.arc.SpringBooks.entity.BookEntity;
 import ru.arc.SpringBooks.service.BookService;
 
@@ -17,10 +16,6 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
-
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
-    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(ModelMap model) {
@@ -42,7 +37,25 @@ public class BookController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchBook(@RequestParam("nameSearch") String name, ModelMap model) {
-        model.addAttribute("books", bookService.searchName(name));
+        model.addAttribute("books",bookService.searchName(name));
         return "/index";
+    }
+
+    @RequestMapping(value = "/search_author", method = RequestMethod.GET)
+    public String searchAuthorBook(@RequestParam("nameSearch") String name, ModelMap model) {
+        model.addAttribute("books",bookService.searchAuthor(name));
+        return "/index";
+    }
+
+    @RequestMapping(value = "/get_edit_id", method = RequestMethod.GET)
+    public String edithBook(@RequestParam("id") int id, ModelMap model) {
+        bookService.delete(id);
+        return "EditBook";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editBook(@RequestParam("name") String name, @RequestParam("author") String author, @RequestParam("genre") String genre, ModelMap model) {
+        bookService.add(new BookEntity(name, author, genre));
+        return "redirect:/";
     }
 }

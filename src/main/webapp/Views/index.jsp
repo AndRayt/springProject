@@ -5,39 +5,60 @@
 <html>
 <head lang="en">
   <title>Books</title>
-  <c:url value="" var="cssURL" />
-  <style><%@include file="/resources/css/style.css"%></style>
+  <link rel="stylesheet" type="text/css" href="../resources/css/index.css" />
 </head>
 
-<body bgcolor="#ffff99">
-<div class="center">
-  <div class="form">
-    <form action="${pageContext.servletContext.contextPath}/search" method="GET">
-    Search : <input type="text" name="nameSearch">
-    <td><input type="submit" value="Ok"/></td>
-    </form>
+<body>
 
-    <a href="${pageContext.servletContext.contextPath}/Views/CreateBook.jsp">Add Book</a>
-    <a href="${pageContext.servletContext.contextPath}/">Reset search</a>
+<div id="main">
 
-    <br><br><table border="1">
-      <tr>
-        <td>Name</td>
-        <td>Author</td>
-        <td>Genre</td>
-        <td>Moves</td>
-      </tr>
-      <c:forEach items="${books}" var="book" varStatus="status">
-        <tr valign="top">
-          <td>${book.getName()}</td>
-          <td>${book.getAuthor()}</td>
-          <td>${book.getGenre()}</td>
-          <td>
-            <a href="${pageContext.servletContext.contextPath}/delete?id=${book.id}">Delete</a>
-          </td>
-        </tr>
-      </c:forEach>
-    </table>
+    <div id="header">
+        <div id="books">
+            <img src="../resources/images/indexH.png">
+        </div>
+    </div>
+
+    <div id="dialog">
+        <div id="search">
+            <form action="${pageContext.servletContext.contextPath}/search" method="GET">
+                <div id="searchParams1">
+                    <label for="nameSearch">Search by Name:</label>
+                    <input type="text" name="nameSearch">
+                    <td><input type="submit" value="Ok"/></td>
+                </div>
+            </form>
+
+            <form action="${pageContext.servletContext.contextPath}/search_author" method="GET">
+                <div id="searchParams2">
+                    <label for="nameSearch">Search by Author:</label>
+                    <input type="text" name="nameSearch">
+                    <td><input type="submit" value="Ok"/></td>
+                </div>
+            </form>
+
+            <a href="${pageContext.servletContext.contextPath}/Views/CreateBook.jsp">Add Book</a>
+            <a href="${pageContext.servletContext.contextPath}/">Reset search</a>
+
+            <br><br><table>
+              <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Moves</th>
+              </tr>
+              <c:forEach items="${books}" var="book" varStatus="status">
+                <tr valign="top">
+                  <td>${book.getName()}</td>
+                  <td>${book.getAuthor()}</td>
+                  <td>${book.getGenre()}</td>
+                  <td>
+                    <a href="${pageContext.servletContext.contextPath}/delete?id=${book.id}">Delete</a>
+                    <a href="${pageContext.servletContext.contextPath}/get_edit_id?id=${book.id}">Edit</a>
+                  </td>
+                </tr>
+              </c:forEach>
+            </table>
+        </div>
   </div>
 </div>
 </body>
